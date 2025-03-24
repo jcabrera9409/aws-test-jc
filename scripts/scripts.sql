@@ -1,4 +1,22 @@
-use testdb;
+CREATE DATABASE IF NOT EXISTS `testdb`;
+
+USE testdb;
+
+CREATE TABLE `tbl_alumno` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `promedio` float NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `tbl_nota` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nota` int NOT NULL,
+  `id_alumno` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK7sduk8ryr5ifaxx92u3b8918p` (`id_alumno`),
+  CONSTRAINT `FK7sduk8ryr5ifaxx92u3b8918p` FOREIGN KEY (`id_alumno`) REFERENCES `tbl_alumno` (`id`)
+);
 
 INSERT INTO tbl_alumno (id, nombre, promedio) VALUES
 (1, 'Juan Pérez', 10),
