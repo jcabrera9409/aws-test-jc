@@ -9,9 +9,9 @@ spring:
       ddl-auto: update
 
   datasource:
-    url: jdbc:mysql://${HOST_BD}:${PORT_BD}/${NAME_BD}
-    username: ${USER_BD}
-    password: ${PASSWORD_BD}
+    url: jdbc:mysql://${HOST_BD:localhost}:${PORT_BD:3306}/${NAME_BD:testdb}
+    username: ${USER_BD:root}
+    password: ${PASSWORD_BD:root}
 
 management:
   endpoint:
