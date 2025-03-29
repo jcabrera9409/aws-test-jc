@@ -1,6 +1,7 @@
 package com.surrender.colegio.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,9 @@ public class AlumnoService {
 	
 	public List<Alumno> listar() throws Exception {
 		return repo.findAll();
+	}
+	
+	public Optional<Alumno> listarPorId(int id) throws Exception {
+		return repo.findById(id);
 	}
 }
