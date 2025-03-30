@@ -1,7 +1,7 @@
 services:
   app:
-    image: jcabrera9409/aws-test:1.0
-    container_name: aws-test-container
+    image: jcabrera9409/aws-test:1.1-java-agent
+    container_name: aws-test-app
     depends_on:
       - db
     environment:
@@ -10,8 +10,9 @@ services:
       - NAME_BD=testdb
       - USER_BD=root
       - PASSWORD_BD=root
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel:4318
     ports:
-      - "8080:8080"
+      - "80:8080"
     restart: always
 
   db:
@@ -42,6 +43,31 @@ services:
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--web.enable-remote-write-receiver'
+
+  otel:
+    image: otel/opentelemetry-collector-contrib:0.121.0
+    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    volumes:
+      - ./otel-config/config-2.yaml:/etc/otel-collector-config.yaml
+    ports:
+      #- "1888:1888"   # pprof extension
+      - "8888:8888"   # Prometheus metrics exposed by the collector
+      #- "8889:8889"   # Prometheus exporter metrics
+      #- "13133:13133" # health_check extension
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP http receiver
+      #- "55679:55679" # zpages extension
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=false
 
 volumes:
   mysql_data:

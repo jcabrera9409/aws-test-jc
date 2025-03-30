@@ -27,11 +27,3 @@ scrape_configs:
 
     static_configs:
       - targets: ["localhost:9090"]
-
-  - job_name: "app"
-
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 15s
-    # scheme defaults to 'http'.
-    static_configs:
-      - targets: ["app:8080"]
