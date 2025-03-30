@@ -2,6 +2,10 @@
 
 Este proyecto es una API REST desarrollada con Spring Boot para la gestión de alumnos y sus notas.
 
+## Documentación Adicional
+
+- [Configuración de Arquitectura en AWS](./images/README.md): Detalles sobre cómo configurar los servicios de AWS utilizados en esta arquitectura.
+
 ## Características
 
 - **Gestión de Alumnos**: Listado de alumnos y consulta de alumnos por ID.
@@ -86,5 +90,10 @@ Caso contrario, puedes construir la imagen usando el Dockerfile
 - Prometheus
 - Grafana
 
-### Autor
+## Demo
+
+- **API**: [https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos](https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos)
+- **Grafana**: [http://98.82.0.210/](http://98.82.0.210/)
+
+## Autor
 Proyecto desarrollado por Jose Cabrera
