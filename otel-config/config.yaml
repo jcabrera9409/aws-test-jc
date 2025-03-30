@@ -20,7 +20,7 @@ processors:
 
 exporters:
   debug/development:
-    verbosity: detailed #detailed #basic
+    verbosity: detailed
     use_internal_logger: false
   
   nop:

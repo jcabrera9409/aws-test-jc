@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "8cab70d3-30b2-48dc-9383-d74e63dfda9f",
+		"name": "aws-test-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43588796"
+	},
+	"item": [
+		{
+			"name": "/v1/alumnos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos"
+			},
+			"response": []
+		},
+		{
+			"name": "/v1/alumnos/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos/2"
+			},
+			"response": []
+		}
+	]
+}

@@ -20,7 +20,7 @@ processors:
 
 exporters:
   debug/development:
-    verbosity: detailed #detailed #basic
+    verbosity: detailed
     use_internal_logger: false
   
   nop:
@@ -45,16 +45,6 @@ service:
       address: 0.0.0.0:8888
   extensions: []
   pipelines:
-    #logs:
-    #  receivers: [otlp]
-    #  processors: []
-    #  exporters: []
-
-    #traces:
-    #  receivers: [otlp]
-    #  processors: []
-    #  exporters: []
-
     metrics:
       receivers: [otlp]
       processors: []
