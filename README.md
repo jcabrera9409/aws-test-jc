@@ -39,7 +39,7 @@ El script SQL para inicializar la base de datos se encuentra en `scripts/scripts
 
 ### Observabilidad
 
-El proyecto incluye configuración para OpenTelemetry en el archivo `otel-config/config-2.yaml`.
+El proyecto incluye configuración para OpenTelemetry en el archivo `otel-config/config-2.yaml` y configuración para Prometheus en el archivo `prometheus-docker/prometheus.yml`.
 
 ## Ejecución
 
@@ -47,10 +47,13 @@ El proyecto incluye configuración para OpenTelemetry en el archivo `otel-config
 
 1. Compila el proyecto con Maven:
    ```bash
-   mvn clean package
+   mvn clean package -DskipTests
+   ```
+
 2. Ejecuta la aplicación:
    ```bash
    java -jar target/colegio-0.0.1-SNAPSHOT.jar
+   ```
 
 ### Con Docker
 
@@ -61,13 +64,20 @@ Puedes utilizar la imagen ya existente en Docker Hub.
 
 Caso contrario, puedes construir la imagen usando el Dockerfile
 
-1. Construye la imagen docker
+1. Compila el proyecto con Maven:
+   ```bash
+   mvn clean package -DskipTests
+   ```
+
+2. Construye la imagen docker
    ```bash
    docker build -t aws-test .
+   ```
 
-2. Levanta los servicios con Docker Compose:
+3. Levanta los servicios con Docker Compose:
    ```bash
-   docker-compose up -d
+   docker compose up -d
+   ```
 
 ## Endpoints
 
@@ -79,7 +89,7 @@ Caso contrario, puedes construir la imagen usando el Dockerfile
 ### Observabilidad
 
 - **Prometheus**: Disponible en `http://localhost:9090`.
-- **Grafana**: Al inicio, se debe agregar el DataSource de Prometheus usando el EndPoint `http://localhost:9090` sin autenticación. Grafana estará disponible en `http://localhost:3000` (usuario: `admin`, contraseña: `admin`).
+- **Grafana**: Al inicio, se debe agregar el DataSource de Prometheus usando el EndPoint `http://prometheus:9090` sin autenticación. Grafana estará disponible en `http://localhost:3000` (usuario: `admin`, contraseña: `admin`).
 
 ### Tecnologías usadas
 
@@ -93,7 +103,7 @@ Caso contrario, puedes construir la imagen usando el Dockerfile
 ## Demo
 
 - **API**: [https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos](https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos)
-- **Grafana**: [http://98.82.0.210/](http://98.82.0.210/)
+- **Grafana**: [http://98.82.0.210](http://98.82.0.210/)
 
 ## Autor
 Proyecto desarrollado por Jose Cabrera

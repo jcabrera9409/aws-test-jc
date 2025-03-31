@@ -4,7 +4,7 @@ Este archivo describe cómo configurar la arquitectura mostrada en el archivo `e
 
 ## Imagen de Referencia
 
-La imagen `esquema.png` muestra la arquitectura propuesta para desplegar la aplicación en AWS. Asegúrate de revisar la imagen antes de proceder con la configuración.
+La imagen `esquema.png` muestra la arquitectura propuesta para desplegar la aplicación en AWS.
 
 <div style="text-align: center;">
   <img src="esquema.png" alt="Esquema de Arquitectura" width="500" />
@@ -202,5 +202,4 @@ Asegúrate de configurar correctamente cada Security Group y asociarlo a los rec
 </div>
 
 ## Autor
-
-Documentación creada para complementar la arquitectura mostrada en `esquema.png`.
+Proyecto desarrollado por Jose Cabrera.
