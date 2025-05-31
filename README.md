@@ -100,10 +100,5 @@ Caso contrario, puedes construir la imagen usando el Dockerfile
 - Prometheus
 - Grafana
 
-## Demo
-
-- **API**: [https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos](https://n7ggl3i9tb.execute-api.us-east-1.amazonaws.com/v1/alumnos)
-- **Grafana**: [http://98.82.0.210](http://98.82.0.210/)
-
 ## Autor
 Proyecto desarrollado por Jose Cabrera
