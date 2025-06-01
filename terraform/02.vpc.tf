@@ -1,20 +1,3 @@
-
-/*terraform {
-  backend "s3" {
-    bucket = "only-class-purpose"
-    key = "aws-test-terraform/terraform.tfstate"
-    region = "us-east-1"
-  }
-}*/
-
-provider "aws" {
-  region = var.region
-}
-
-#===========================
-# VPC y redes
-#===========================
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.1"
@@ -30,5 +13,8 @@ module "vpc" {
   single_nat_gateway    = true
   enable_dns_support    = true
   enable_dns_hostnames  = true
+
+  map_public_ip_on_launch = true
+
   tags = var.tags
 }
