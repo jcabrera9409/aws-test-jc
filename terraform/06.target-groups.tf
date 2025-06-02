@@ -1,5 +1,5 @@
 module "target_group" {
-    source = "./target_group"
+    source = "./target_group_module"
     
     name = "${var.project_name}-tg"
     target_type = var.tg_target_type

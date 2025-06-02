@@ -11,7 +11,7 @@ resource "aws_launch_template" "this" {
         arn = var.iam_profile
     }
 
-    user_data = var.user_data 
+    user_data = var.user_data
     update_default_version = true
 
     tags = var.tags

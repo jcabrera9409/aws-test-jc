@@ -3,6 +3,8 @@ module "rds_mysql" {
   source  = "terraform-aws-modules/rds/aws"
   version = "6.5.3"
 
+  create_db_instance = var.db_create
+
   identifier = "${var.project_name}-db"
 
   engine                = "mysql"

@@ -7,7 +7,7 @@ module "auto_scaling_group" {
     max_size = 4
     desired_capacity = 2
 
-    vpc_zone_identifier = module.vpc.public_subnets
+    vpc_zone_identifier = module.vpc.private_subnets
 
     launch_template_id = module.launch_template_backend.launch_template_id
     launch_template_version = module.launch_template_backend.launch_template_default_version

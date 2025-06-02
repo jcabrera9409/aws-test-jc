@@ -24,7 +24,7 @@ variable "iam_profile" {
 }
 
 variable "user_data" {
-    description = "Filebase64 User Data"
+    description = "Base64 User Data"
 }
 
 variable "tags" {

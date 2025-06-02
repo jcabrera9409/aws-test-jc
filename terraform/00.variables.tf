@@ -6,6 +6,18 @@ variable "project_name" {
     description = "Nombre del proyecto terraform"
 }
 
+variable "iam_profile_name" {
+    description = "Nombre del IAM Profile por defecto"
+}
+
+variable "ec2_ami_default" {
+    description = "AMI de EC2 por defecto"
+}
+
+variable "ec2_instance_type_default" {
+    description = "Tipo de instancia de ECW por defecto"
+}
+
 variable "vpc_cidr" {
     description = "Rango de IPs"
 }
@@ -24,6 +36,11 @@ variable "vpc_private_subnets" {
 
 variable "vpc_enable_nat_gateway" {
   description = "habilitar nat gateway para redes privadas"
+}
+
+variable "db_create" {
+    description = "Usar true si se desea crear una base de datos RDS"
+    default = false
 }
 
 variable "db_instance_class" {
@@ -73,6 +90,22 @@ variable "tg_target_type" {
 
 variable "tg_health_path" {
     description = "Ruta que se usará para realizar health check"
+}
+
+variable "mysql_user_data" {
+    description = "Scripts a ejecutar para levantar un EC2 con MySQL"
+}
+
+variable "prometheus_user_data" {
+    description = "Scripts a ejecutar para levantar un EC2 con Prometheus"
+}
+
+variable "otel_user_data" {
+    description = "Scripts a ejecutar para levantar un EC2 con Open Telemetry"
+}
+
+variable "grafana_user_data" {
+    description = "Scripts a ejecutar para levanar un EC2 con Grafana"
 }
 
 variable "tags" {

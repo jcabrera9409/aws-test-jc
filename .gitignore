@@ -153,3 +153,5 @@ terraform.rc
 
 prometheus-data
 terraform-test
+
+*.config.sh
