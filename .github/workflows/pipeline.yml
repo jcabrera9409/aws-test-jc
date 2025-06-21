@@ -2,11 +2,21 @@ name: Deployment Pipeline
 
 on: 
   push:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
-  deploy:
+  avoid_redundant:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Redundant Builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+  dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,5 +29,63 @@ jobs:
           cache: 'maven'
       - name: Download Maven dependencies
         run: mvn dependency:go-offline
-      - name: Build with Maven
+
+  pmd_check:
+    needs: dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Download Maven dependencies
+        run: mvn dependency:go-offline
+      - name: Run PMD Check
+        run: mvn pmd:pmd
+
+  build:
+    needs: dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Download Maven dependencies
+        run: mvn dependency:go-offline
+      - name: Build with 'maven'
         run: mvn -B package --file pom.xml
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: target
+
+  install:
+    needs: [build, pmd_check]
+    if: ${{github.event_name == 'push' && github.event.branch == 'master'}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Download Maven dependencies
+        run: mvn dependency:go-offline
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-artifact
+          path: target
+      - name: Install with 'maven'
+        run: ls -l target
