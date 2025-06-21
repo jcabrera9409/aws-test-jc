@@ -17,5 +17,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
+      - name: Download Maven dependencies
+        run: mvn dependency:go-offline
       - name: Build with Maven
         run: mvn -B package --file pom.xml
