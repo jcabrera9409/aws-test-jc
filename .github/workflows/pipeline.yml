@@ -42,8 +42,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Download Maven dependencies
-        run: mvn dependency:go-offline
       - name: Run PMD Check
         run: mvn pmd:pmd
 
@@ -59,11 +57,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Download Maven dependencies
-        run: mvn dependency:go-offline
       - name: Build with 'maven'
         run: mvn -B package --file pom.xml
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: target
@@ -81,9 +77,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Download Maven dependencies
-        run: mvn dependency:go-offline
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: build-artifact
           path: target
